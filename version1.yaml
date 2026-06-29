@@ -1,0 +1,58 @@
+#cloud-config
+autoinstall:
+  version: 1
+  identity:
+    hostname: my-server
+    username: mohan
+    password: "780ea9376333dabb1959f16e1622e00c"
+  ssh:
+    install-server: true
+    allow-pw: false
+  storage:
+    layout:
+      name: lvm
+  packages:
+    # Core build + version control
+    - build-essential
+    - git
+    - curl
+    - wget
+    - make
+    - pkg-config
+    - ca-certificates
+    - gnupg
+    - unzip
+    - jq
+
+    # Python / FastAPI
+    - python3
+    - python3-pip
+    - python3-venv
+    - python3-dev
+
+    # Java / Spring Boot
+    - openjdk-21-jdk
+    - maven
+
+    # Database clients
+    - postgresql-client
+    - mysql-client
+    - redis-tools
+
+    # Containers
+    - docker.io
+    - docker-compose-v2
+
+    # Ops / debugging
+    - net-tools
+    - htop
+    - tmux
+  late-commands:
+    # uv (fast Python package manager — not in apt)
+    - curtin in-target --target=/target -- bash -c "curl -LsSf https://astral.sh/uv/install.sh | sh"
+    # Node.js LTS via NodeSource (apt's nodejs is stale)
+    - curtin in-target --target=/target -- bash -c "curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -"
+    - curtin in-target --target=/target -- apt-get install -y nodejs
+    # Add your user to the docker group
+    - curtin in-target --target=/target -- usermod -aG docker mohan
+    - curtin in-target --target=/target -- systemctl enable docker
