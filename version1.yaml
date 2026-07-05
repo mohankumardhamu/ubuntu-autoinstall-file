@@ -4,7 +4,7 @@ autoinstall:
   identity:
     hostname: my-server
     username: mohan
-    password: "780ea9376333dabb1959f16e1622e00c"
+    password: "$6$DWNIENCwfa45ummI$pdmx1zHupYqS15PoGc7uUgu9gU2hirXTCHHcpfqYRxDb37Xl4QbVub7QwqaJwMH2fsBTIgZwb4WgPgHvpQxfM0"
   ssh:
     install-server: true
     allow-pw: false
