@@ -11,6 +11,12 @@ autoinstall:
   storage:
     layout:
       name: lvm
+  snaps:
+    # Wave terminal (equivalent of: sudo snap install --classic waveterm)
+    - name: waveterm
+      classic: true
+    # Postman (equivalent of: sudo snap install postman)
+    - name: postman
   packages:
     # Core build + version control
     - build-essential
@@ -23,6 +29,7 @@ autoinstall:
     - gnupg
     - unzip
     - jq
+    - openssh-client
 
     # Python / FastAPI
     - python3
@@ -53,6 +60,12 @@ autoinstall:
     # Node.js LTS via NodeSource (apt's nodejs is stale)
     - curtin in-target --target=/target -- bash -c "curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -"
     - curtin in-target --target=/target -- apt-get install -y nodejs
+    # Ghostty terminal (community .deb installer)
+    - curtin in-target --target=/target -- bash -c "curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh | bash"
+    # Claude Code
+    - curtin in-target --target=/target -- bash -c "curl -fsSL https://claude.ai/install.sh | bash"
+    # Gemini CLI (needs the nodejs installed above)
+    - curtin in-target --target=/target -- npm install -g @google/gemini-cli
     # Add your user to the docker group
     - curtin in-target --target=/target -- usermod -aG docker mohan
     - curtin in-target --target=/target -- systemctl enable docker
