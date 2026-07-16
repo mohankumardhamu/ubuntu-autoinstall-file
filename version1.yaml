@@ -17,6 +17,12 @@ autoinstall:
       classic: true
     # Postman (equivalent of: sudo snap install postman)
     - name: postman
+    - name: code                      # VS Code (Microsoft-published)
+      classic: true
+    - name: pycharm-community
+      classic: true
+    - name: intellij-idea-community
+      classic: true
   packages:
     # Core build + version control
     - build-essential
