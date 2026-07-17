@@ -23,6 +23,7 @@ autoinstall:
       classic: true
     - name: intellij-idea-community
       classic: true
+    - name: chromium
   packages:
     # Core build + version control
     - build-essential
