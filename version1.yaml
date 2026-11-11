@@ -19,11 +19,14 @@ autoinstall:
     - name: postman
     - name: code                      # VS Code (Microsoft-published)
       classic: true
-    - name: pycharm-community
+    - name: pycharm
       classic: true
     - name: intellij-idea-community
       classic: true
     - name: chromium
+    - name: android-studio
+      classic: true
+    - name: postman
   packages:
     # Core build + version control
     - build-essential
